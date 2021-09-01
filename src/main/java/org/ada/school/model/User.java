@@ -24,18 +24,27 @@ public class User
 
     Date createdAt;
 
-    public User(){
+    public User() {
+    }
 
-    };
-
-
-    public User( UserDto userDto )
+    public User(UserDto userDto )
     {
-        id = UUID.randomUUID().toString();
         name = userDto.getName();
         lastName = userDto.getLastName();
         email = userDto.getEmail();
         createdAt = new Date();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     public String getName()

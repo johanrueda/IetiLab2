@@ -6,7 +6,6 @@ import org.ada.school.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 @Service
 public class UserMongoDBService implements UserService {
@@ -28,6 +27,7 @@ public class UserMongoDBService implements UserService {
 
     @Override
     public List<User> all() {
+        //Falta hacer este metodo y el desafio
         return null;
     }
 
@@ -42,7 +42,7 @@ public class UserMongoDBService implements UserService {
 
     @Override
     public User update(UserDto userDto, String id) {
-        if(userRepository.existsById(id)){
+        if (userRepository.findById(id).isPresent()) {
             User user = userRepository.findById(id).get();
             user.update(userDto);
             userRepository.save(user);

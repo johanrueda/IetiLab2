@@ -28,8 +28,6 @@ public class UserMongoDBService implements UserService {
 
     @Override
     public List<User> all() {
-        //Falta hacer este metodo y el desafio
-
         return userRepository.findAll();
     }
 
@@ -57,7 +55,6 @@ public class UserMongoDBService implements UserService {
     // Challenge
     @Override
     public List<User> findUsersWithNameOrLastNameLike(String queryText) {
-
         return userRepository.findByNameOrLastNameLike(queryText, queryText);
     }
 

@@ -6,6 +6,7 @@ import org.ada.school.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class UserMongoDBService implements UserService {
@@ -28,7 +29,8 @@ public class UserMongoDBService implements UserService {
     @Override
     public List<User> all() {
         //Falta hacer este metodo y el desafio
-        return null;
+
+        return userRepository.findAll();
     }
 
     @Override
@@ -49,5 +51,18 @@ public class UserMongoDBService implements UserService {
             return user;
         }
         return null;
+    }
+
+
+    // Challenge
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+
+        return userRepository.findByNameOrLastNameLike(queryText, queryText);
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        return userRepository.findByCreatedAtAfter(startDate);
     }
 }

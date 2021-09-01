@@ -5,15 +5,9 @@ import org.ada.school.model.User;
 import org.ada.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -51,15 +45,24 @@ public class UserController
     }
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id )
-    {
-        return ResponseEntity.ok( userService.update( userDto, id ) );
+    public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id ) {
+        return ResponseEntity.ok(userService.update(userDto, id));
     }
 
-    @DeleteMapping( "/{id}" )
-    public ResponseEntity<Boolean> delete( @PathVariable String id )
-    {
-        return ResponseEntity.ok( userService.deleteById( id ) );
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable String id) {
+        return ResponseEntity.ok(userService.deleteById(id));
+    }
+
+    //Challenge
+    @GetMapping("/query/{queryText}")
+    public ResponseEntity<List<User>> findUsersWithNameOrLastNameLike(@PathVariable String queryText) {
+        return ResponseEntity.ok(userService.findUsersWithNameOrLastNameLike(queryText));
+    }
+
+    @GetMapping("/date/{startDate}")
+    public ResponseEntity<List<User>> findUsersCreatedAfter(@PathVariable Date startDate) {
+        return ResponseEntity.ok(userService.findUsersCreatedAfter(startDate));
     }
 
 }

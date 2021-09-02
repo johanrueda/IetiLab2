@@ -2,13 +2,13 @@ package org.ada.school.service;
 
 import org.ada.school.dto.UserDto;
 import org.ada.school.model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-@Service
+
 public class UserServiceHashMap
     implements UserService
 {
@@ -48,16 +48,23 @@ public class UserServiceHashMap
     @Override
     public User update( UserDto userDto, String id )
     {
-        if ( usersMap.containsKey( id ) )
-        {
-            User user = usersMap.get( id );
-            user.update( userDto );
+        if ( usersMap.containsKey( id ) ) {
+            User user = usersMap.get(id);
+            user.update(userDto);
             return user;
-        }
-        else
-        {
+        } else {
             return null;
         }
+    }
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        return null;
     }
 
 
